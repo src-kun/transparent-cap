@@ -21,11 +21,13 @@ class ORedis:
 	def iteritems(self, d = False):
 		result = []
 		for key in self.output_handle.scan_iter():
+			#redis 数据不纯净时会报错
 			result.append(eval('{"%s":"%s"}'%(key, self.output_handle.get(key))))
 			if d:
 				self.output_handle.delete(key)
 		return result
 	
+	#清空redis
 	def empty(self):
 		for key in self.output_handle.scan_iter():
 			self.output_handle.delete(key)
