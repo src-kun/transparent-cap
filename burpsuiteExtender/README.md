@@ -4,7 +4,7 @@
 # 使用
 复制 db.Properties 下的文件到c盘，配置redis的ip和port
 
-# 加载插件，出现下面字符串插件加载成功：
+# 加载插件：
 Register TransparentCap Success
 
 PONG
