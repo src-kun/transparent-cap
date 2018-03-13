@@ -1,5 +1,5 @@
 # transparent-cap
-本项目主要研究http请求的抓取并保存的方式。
+本项目主要研究http请求抓取和保存的N种方式。
 
 
 socks5 透明代理抓取api数据，生成html form表单模板
