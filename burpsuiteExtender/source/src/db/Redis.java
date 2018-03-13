@@ -32,7 +32,7 @@ public class Redis {
 		
 	}
 
-	private Jedis jedis = new Jedis(ip, port);
+	private Jedis jedis = new Jedis("192.168.5.136", port);
 
 	public void set(String key, String value) {
 		jedis.set(key, value);
