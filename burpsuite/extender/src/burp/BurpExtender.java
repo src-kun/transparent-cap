@@ -18,8 +18,8 @@ public class BurpExtender implements IBurpExtender, IHttpListener {
 	private IExtensionHelpers helpers;
 	private PrintWriter stdout;
 	private Redis redis = new Redis();
-	private String ExtenderName = "Register TransparentCap Success\n" + redis.ping();
-
+	private String ExtenderName = "TransparentCap\n";
+	private String Msg = "Register TransparentCap Success\n" + redis.ping();
 	/**
 	 * 入口
 	 */
@@ -80,7 +80,7 @@ public class BurpExtender implements IBurpExtender, IHttpListener {
 	@Override
 	public void registerExtenderCallbacks(IBurpExtenderCallbacks callbacks) {
 		stdout = new PrintWriter(callbacks.getStdout(), true);
-		stdout.println(ExtenderName);
+		stdout.println(Msg);
 		helpers = callbacks.getHelpers();
 		// 设置拓展名
 		callbacks.setExtensionName(ExtenderName);
