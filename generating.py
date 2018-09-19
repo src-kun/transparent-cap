@@ -96,10 +96,3 @@ class Generat:
 		f = open('test.html', 'w')
 		f.write(self.als_html)
 		f.close()
-
-ors = ORedis('192.168.5.131', 6379)
-generat = Generat(ors.iteritems())
-generat.tem_html()
-#print generat.als_html
-generat.output('./test.html')
-#print generat.get_als_headers()

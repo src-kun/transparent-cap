@@ -8,12 +8,10 @@ import time
 from oredis import ORedis
 import hashlib
 
-scan_host = 'Host: 192.168.5.128'
 IsNeedAuth=False
 Username='admin'
 Password='123456'
-Port=8081
-ors = ORedis('192.168.5.131', 6379)
+Port=8082
 
 def prxoy(sock, address): 
 	cs = sock  
@@ -99,12 +97,6 @@ def forward(cs,DspAddr,DspPort):
 				caddr,cport= cs.getpeername()
 				if (len(recv) >0):
 					saddr,sport= ss.getpeername()
-					if sport == 80:
-						if scan_host in recv:
-							m2.update(recv)
-							ors.set(m2.hexdigest(), recv.replace('\r\n', '\\r\\n'))
-							#TODO 入库保存http request
-							print recv
 					print caddr,':',cport,'<',len(recv),'>',saddr,':',sport
 					ss.send(recv)
 					
@@ -128,11 +120,11 @@ def forward(cs,DspAddr,DspPort):
 			break			
 
 if __name__ == "__main__":
-	ls = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	ls.bind(('0.0.0.0',Port))
-	ls.listen(500)
+	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	s.bind(('0.0.0.0',Port))
+	s.listen(500)
 	while (True):
-		clientSock, address = ls.accept()
-		thread = threading.Thread(target=prxoy, args=(clientSock,address))
+		clientSock, address = s.accept()
+		thread = threading.Thread(target=prxoy, args=(clientSock, address))
 		thread.start()
 
