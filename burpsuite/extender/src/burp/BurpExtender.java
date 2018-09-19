@@ -49,7 +49,7 @@ public class BurpExtender implements IBurpExtender, IHttpListener {
 			//获取参数 JsonObject
 			JsonObjectBuilder paramsJson = Json.createObjectBuilder();
 			for (IParameter param : params) {
-				paramsJson.add(param.getName(), param.getName());
+				paramsJson.add(param.getName(), param.getValue());
 			}
 			
 			data.setMethod(requestInfo.getMethod());
@@ -58,7 +58,7 @@ public class BurpExtender implements IBurpExtender, IHttpListener {
 			data.setRaw(raw.toString());
 			URL url = requestInfo.getUrl();
 			data.setUrl(url.toString());
-			redis.set(data.getKey(), data.encodeBase64());
+			redis.set(data.getKey(), data.toString());
 		} else {// 响应消息
 //			byte[] response = messageInfo.getResponse(); // 取得响应消息
 //			IResponseInfo analyzedResponse = helpers.analyzeResponse(response); // 解析响应消息

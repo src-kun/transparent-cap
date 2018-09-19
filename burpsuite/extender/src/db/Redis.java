@@ -15,9 +15,9 @@ import redis.clients.jedis.Jedis;
  */
 public class Redis {
 
-	private static String ip = null;
+	private static String ip = "172.16.81.173";
 	private static int port = 6379;
-	static {
+	/**static {
 		Properties prop = new Properties();
 		InputStream in = null;
 		try {
@@ -30,9 +30,9 @@ public class Redis {
 			e.printStackTrace();
 		}
 		
-	}
+	}*/
 
-	private Jedis jedis = new Jedis("192.168.5.136", port);
+	private Jedis jedis = new Jedis(ip, port);
 
 	public void set(String key, String value) {
 		jedis.set(key, value);
